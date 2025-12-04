@@ -14,7 +14,7 @@ int main() {
     Logger& log2 = Logger::getInstancia();
 
     // Probar Singleton
-    std::cout << "¿log1 y log2 son la misma instancia? "
+    std::cout << "log1 y log2 son la misma instancia? "
               << std::boolalpha
               << (&log1 == &log2) << std::endl;
 
