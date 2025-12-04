@@ -25,4 +25,4 @@ Se muestra cómo crear varias referencias a la instancia, modificar la configura
 5. Esto confirma que el patrón Singleton funciona correctamente: **no se crean múltiples instancias**, sino una única instancia compartida.
 
 
-![Salida de Código](./images/ejer1.png)
+![Salida de Código](../images/ejer1.png)
