@@ -14,7 +14,7 @@ int main() {
     ConexionBD& c2 = ConexionBD::getInstancia();
 
     // Verificar si ambos son la misma instancia
-    std::cout << "¿c1 y c2 son la misma instancia? "
+    std::cout << "c1 y c2 son la misma instancia? "
               << std::boolalpha
               << (&c1 == &c2) << std::endl;
 

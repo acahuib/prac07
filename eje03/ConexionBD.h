@@ -28,7 +28,7 @@ public:
             conectado = true;
             std::cout << "Conectando a la base de datos..." << std::endl;
         } else {
-            std::cout << "La conexión ya está activa." << std::endl;
+            std::cout << "La conexion ya esta activa." << std::endl;
         }
     }
 
@@ -38,13 +38,13 @@ public:
             conectado = false;
             std::cout << "Desconectando de la base de datos..." << std::endl;
         } else {
-            std::cout << "No hay conexión activa." << std::endl;
+            std::cout << "No hay conexion activa." << std::endl;
         }
     }
 
     // Estado actual
     void estado() const {
-        std::cout << "Estado de la conexión: "
+        std::cout << "Estado de la conexion: "
                   << (conectado ? "Conectado" : "Desconectado")
                   << std::endl;
     }
