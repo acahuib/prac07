@@ -11,7 +11,7 @@ private:
 
     // 1. Constructor privado
     Configuracion() {
-        idioma = "Español";
+        idioma = "Espanol";
         zonaHoraria = "GMT-5";
     }
 

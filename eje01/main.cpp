@@ -12,7 +12,7 @@ int main() {
     Configuracion& c2 = Configuracion::getInstancia();
 
     // Cambiamos desde c2
-    c2.setIdioma("Inglés");
+    c2.setIdioma("Ingles");
 
     // Ambos deben mostrar lo mismo
     std::cout << "Desde c1:\n";
@@ -22,7 +22,7 @@ int main() {
     c2.mostrarConfiguracion();
 
     // Verificación de que son la misma instancia
-    std::cout << "\n¿c1 y c2 son la misma instancia? "
+    std::cout << "\nc1 y c2 son la misma instancia? "
               << std::boolalpha
               << (&c1 == &c2)
               << std::endl;
