@@ -2,13 +2,22 @@
 #include <iostream>
 #include <thread>
 #include "ConexionBD_threadsafe.h"
+#include <mutex>
 
+std::mutex cout_mtx;
 void tarea(int id) {
     ConexionBD* c = ConexionBD::getInstancia();
-    std::cout << "Hilo " << id << " obtiene instancia: " << c << std::endl;
-    c->conectar();
-    c->estado();
-    c->desconectar();
+    {
+        std::lock_guard<std::mutex> lock(cout_mtx);
+        std::cout << "Hilo " << id << " obtiene instancia: " << c << std::endl;
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(cout_mtx);
+        c->conectar();
+        c->estado();
+        c->desconectar();
+    }
 }
 
 int main() {
