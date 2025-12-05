@@ -1,34 +1,64 @@
-# Ejercicio 03 (Aplicado): Conexión simulada a base de datos
+# Ejercicio 04 (Avanzado): Singleton en un juego
 
-Crea una clase `ConexionBD` que simule la conexión a una base de datos.
+Desarrolla una clase `ControlJuego` para manejar el estado global de un juego (**nivel actual, puntaje, vidas**).
 
 ## Requisitos
 
-- Solo debe haber **una conexión activa** (Singleton).  
-- Incluye métodos como `conectar()`, `desconectar()` y `estado()`.  
-- Si alguien intenta crear otra conexión, debe devolverse **la misma instancia** ya existente.
+- Usar **Singleton** para asegurar que solo exista **una única instancia**.  
+- Gestionar el estado global del juego:  
+  - Nivel actual  
+  - Puntaje  
+  - Vidas  
+- Simular en el `main` cómo distintos módulos acceden y modifican el mismo `ControlJuego`.
 
 ---
 
 ## Solución
 
-En este ejercicio se implementa el **patrón Singleton** para la clase `ConexionBD`.  
-Esto garantiza que **solo exista una conexión activa** a la vez. La clase incluye métodos para:
+En este ejercicio se implementa la clase `ControlJuego` mediante el **patrón Singleton**, garantizando que todos los componentes del juego (jugador, enemigos, interfaz) trabajen sobre **una sola instancia compartida** del estado del juego.
 
-- `conectar()` → simula abrir la conexión.  
-- `desconectar()` → simula cerrar la conexión.  
-- `estado()` → muestra si la conexión está activa o no.  
+Esto permite que cualquier módulo pueda consultar o modificar información como el puntaje, el nivel o las vidas sin riesgo de duplicar el estado o generar inconsistencias.
 
-Se prueban múltiples referencias (`c1` y `c2`) y funciones (`funcionX`, `funcionY`) para demostrar que **todas usan la misma instancia**.
+La clase mantiene:
 
-### Ejemplo de salida del programa
+- `nivel`  
+- `puntaje`  
+- `vidas`  
 
-![Salida de Código](../images/ejer3.png)
+Y provee métodos como:
 
-**Explicación de la salida:**
+- `subirNivel()`  
+- `agregarPuntaje(int puntos)`  
+- `perderVida()`  
+- `mostrarEstado()`  
 
-1. La línea `c1 y c2 son la misma instancia? true` confirma que **solo hay una instancia de ConexionBD**, cumpliendo el patrón Singleton.  
-2. Al llamar `c1.estado()`, inicialmente la conexión está **Desconectada**.  
-3. Luego, `c1.conectar()` activa la conexión, y cualquier otra referencia (`c2` o desde funciones) refleja el mismo estado porque apuntan a la **misma instancia**.  
-4. Intentar conectar de nuevo muestra `"La conexion ya esta activa."`, confirmando que no se crea una nueva instancia.  
-5. Finalmente, `c2.desconectar()` cambia el estado a desconectado, mostrando que **todas las referencias comparten el mismo objeto**.
+En el `main`, distintos módulos simulan acciones del juego mediante llamadas a la **misma instancia del Singleton**, demostrando que todos operan sobre el mismo estado.
+
+---
+
+## Explicación de la salida del código
+
+1. Se obtienen dos referencias (`c1` y `c2`) usando `getInstancia()`.  
+   Al verificarse `(&c1 == &c2)` se muestra `true`, confirmando que ambas apuntan a la **misma instancia Singleton**.
+
+2. Se muestra el estado inicial del juego:  
+   - Nivel 1  
+   - Puntaje 0  
+   - Vidas 3  
+
+3. El módulo del **jugador**:  
+   - Gana 100 puntos  
+   - Pierde una vida  
+
+4. El módulo de **enemigos**:  
+   - Agrega 250 puntos por eliminar un enemigo  
+
+5. Otra parte del juego **sube el nivel global**.  
+
+6. La **interfaz** muestra el estado final actualizado, demostrando que todas las modificaciones se realizaron sobre una **sola instancia compartida** del juego.
+
+---
+
+## Salida de Código
+
+![Salida de Código](../images/ejer4.png)
